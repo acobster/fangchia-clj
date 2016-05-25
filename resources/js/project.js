@@ -14,9 +14,17 @@ $(document).ready(function(){
 
 
   /* Bandcamp player */
+  document.getElementById('open-player-btn').addEventListener('click', function() {
+    var wrapper = document.getElementById('player-wrapper');
+    var klass = wrapper.getAttribute('class') || '';
 
-  $('.open-player-btn').click(function() {
-    $(this).parents('aside').toggleClass('open');
+    if (klass.indexOf('-open') > -1) {
+      // it's open; close it
+      wrapper.setAttribute('class', klass.replace('-open', ''));
+    } else {
+      // it's closed; open it
+      wrapper.setAttribute('class', klass+' -open');
+    }
   });
 
 
