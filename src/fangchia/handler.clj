@@ -6,7 +6,7 @@
 ; Template location
 (use 'selmer.parser)
 (selmer.parser/set-resource-path! (clojure.java.io/resource "views"))
-
+(selmer.parser/cache-off!)
 
 ; routing!
 (defroutes app-routes
