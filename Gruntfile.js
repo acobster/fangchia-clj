@@ -1,10 +1,3 @@
-var
-  LIVERELOAD_PORT = 35729,
-  lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT }),
-  mountFolder = function( connect, dir ) {
-    return connect.static(require('path').resolve(dir));
-  };
-
 /*global module:false*/
 module.exports = function(grunt) {
 
@@ -16,26 +9,6 @@ module.exports = function(grunt) {
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
-    connect: {
-      server: {
-        options: {
-          port: 8888,
-          base: 'public',
-          keepalive: true,
-          livereload: false
-        }
-      },
-      livereload: {
-        options: {
-          middleware: function( connect ) {
-            return [
-              lrSnippet,
-              mountFolder(connect, './')
-            ];
-          }
-        }
-      }
-    },
     bower: {
       install: {
         options: {
@@ -48,15 +21,16 @@ module.exports = function(grunt) {
     concat: {
       options: {
         banner: '<%= banner %>',
-        stripBanners: true
+        stripBanners: true,
       },
       js: {
+        nonull: true,
         src: [
           'node_modules/jquery/dist/jquery.js',
-          'js/responsive-nav.js',
-          'js/project.js',
+          'resources/js/responsive-nav.js',
+          'resources/js/project.js',
         ],
-        dest: 'public/js/app.js'
+        dest: 'resources/public/js/app.js'
       }
     },
     uglify: {
@@ -64,12 +38,12 @@ module.exports = function(grunt) {
         banner: '<%= banner %>'
       },
       js: {
-        src: 'public/js/app.js',
-        dest: 'public/js/app.min.js'
+        src: 'resources/public/js/app.js',
+        dest: 'resources/public/js/app.min.js'
       },
       map_js: {
-        src: 'js/map.js',
-        dest: 'public/js/map.min.js'
+        src: 'resources/js/map.js',
+        dest: 'resources/public/js/map.min.js'
       }
     },
     jshint: {
@@ -97,10 +71,10 @@ module.exports = function(grunt) {
         src: 'Gruntfile.js'
       },
       js: {
-        src: ['js/project.js', 'js/responsive-nav.js']
+        src: ['resources/js/project.js', 'resources/js/responsive-nav.js']
       },
       map_js: {
-        src: 'js/map.js'
+        src: 'resources/js/map.js'
       }
     },
     less: {
@@ -110,7 +84,7 @@ module.exports = function(grunt) {
           compress: true
         },
         files: {
-          'public/css/style.css': ['less/style.less']
+          'resources/public/css/style.css': ['resources/less/style.less']
         }
       }
     },
@@ -124,18 +98,17 @@ module.exports = function(grunt) {
         tasks: ['jshint:js', 'concat:js', 'uglify:js']
       },
       map_js: {
-        files: 'js/map.js',
+        files: 'resources/js/map.js',
         tasks: ['jshint:map_js', 'uglify:map_js']
       },
       less: {
-        files: ['less/*.less'],
+        files: ['resources/less/*.less'],
         tasks: ['less']
       }
     }
   });
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -143,6 +116,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'watch']);
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less', 'watch']);
 
 };
