@@ -1,0 +1,23 @@
+{
+  "name": "FangChia.com",
+  "description": "Where would you that we gather?",
+  "author": {
+    "name": "Coby Tamayo",
+    "email": "me@cobytamayo.com"
+  },
+  "licenses": {
+    "type": "Creative Commons Attribution 3.0 Unported License"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-contrib-less": "^1.1.0",
+    "jquery": "^2.1.4",
+  }
+}

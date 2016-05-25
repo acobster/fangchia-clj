@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fang Chia</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/app.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="site-heading-wrapper">
+      <a href="/" title="FangChia.com">
+        <h1 class="site-heading">Fang Chia</h1>
+      </a>
+    </div>
+
+    <a class="menu-btn">
+      <div class="toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <span>Menu</span>
+    </a>
+
+    <nav class="responsive-nav">
+      <ul>
+        <li class="nav-main-item">
+          <a class="nav-main-link" href="/">Home</a>
+        </li>
+        <li class="nav-main-item">
+          <a class="nav-main-link" href="/music">Music</a>
+        </li>
+        <li class="nav-main-item">
+          <a class="nav-main-link" href="/shows">Shows</a>
+        </li>
+        <li class="nav-main-item">
+          <a class="nav-main-link" href="/photos">photos</a>
+        </li>
+        <li class="nav-main-item">
+          <a class="nav-main-link" href="/about">about</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section>
+    <article>
+
+      {% block main-content %}
+        <!-- nothin here -->
+      {% endblock %}
+
+    </article>
+  </section>
+
+  <aside>
+    <div class="open-player-btn-wrapper">
+      <div class="open-player-btn">
+      </div>
+    </div>
+
+    <div class="player">
+      <iframe style="border: 0; width: 400px; height: 472px;" src="http://bandcamp.com/EmbeddedPlayer/album=698425854/size=large/bgcol=333333/linkcol=4ec5ec/artwork=small/transparent=true/" seamless>
+        <a href="http://media.fangchia.com/album/where-would-you-that-we-gather">Where would you that we gather? by Fang Chia</a>
+      </iframe>
+    </div>
+  </aside>
+
+  <footer>
+  </footer>
+
+</body>
+</html>

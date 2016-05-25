@@ -1,0 +1,173 @@
+*, *:before {
+  transition: all @transition-seconds ease;
+}
+
+body {
+  background: @bg-color;
+  color: @copy-color;
+
+  > header {
+    position: fixed;
+    width: 100%;
+    background: @bg-color;
+    box-shadow: 0px 0px 45px 15px @bg-color;
+    z-index: @z-index-top;
+
+    .site-heading-wrapper {
+      width: 100%;
+      max-width: 90%;
+      height: @header-height;
+      margin: @heading-margin-top 5% @heading-margin-bottom;
+      padding: 0;
+
+      &.corner {
+        width: 45%;
+        margin: 0;
+        padding: 0 20px;
+
+        @media @mobile {
+          width: 60%;
+        }
+      }
+
+      @media @mobile {
+        padding-right: 50px;
+        height: @header-height-mobile;
+        .corner;
+        width: 60%;
+      }
+
+      .site-heading {
+        margin: 0;
+        padding: 0;
+        background: @bg-color url('/img/banner.png') no-repeat center;
+        background-size: contain;
+        text-indent: -999em;
+
+        display: block;
+        max-width: 100%; // Part 1: Set a maximum relative to the parent
+        min-height: @header-height;
+        height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+
+        @media @mobile {
+          min-height: @header-height-mobile;
+        }
+      }
+    }
+  }
+
+  > section {
+    max-width: 600px;
+    margin: 0 auto @footer-height;
+    padding: (@heading-margin-top + @header-height + @heading-margin-bottom) @margin-regular 3em;
+
+    @media @mobile {
+      padding-top: @header-height-mobile;
+    }
+  }
+
+  > aside {
+    // Bandcamp player
+    position: fixed;
+    bottom: @footer-height;
+    margin-left: -@player-width;
+
+    &.open {
+      margin-left: 0;
+      box-shadow: 0 0px 15px 6px @bg-color;
+
+      .open-player-btn {
+        &:before { .rotate(180deg); }
+      }
+    }
+
+    .small {
+      height: @player-height-small;
+    }
+
+    .open-player-btn-wrapper {
+      position: absolute;
+      float: right;
+      right: 0;
+      bottom: 2em;
+      width: 70px;
+      height: 70px;
+      margin-right: -70px;
+      border-left: none;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      box-shadow: 9px 0 15px 5px @shadow-color, 5px 10px 10px @shadow-color, 4px -10px 15px @shadow-color;
+
+      .open-player-btn {
+        width: 100%;
+        height: 100%;
+        .hover-opacity;
+        background: @secondary-bg-color url('/img/wwytwg-small.png') no-repeat bottom center;
+
+        &:before {
+          content: "";
+          position: absolute;
+          display: block;
+          margin: 15px;
+          border-style: solid;
+          border-width: 20px 0 20px 34px;
+          border-color: transparent transparent transparent @highlight-color;
+        }
+      }
+    }
+
+
+    @media @mobile, @short {
+      bottom: @footer-height-mobile;
+      .small;
+
+      &.open {
+        .open-player-btn-wrapper {
+          bottom: @player-height-small;
+          right: 100px;
+          box-shadow: 6px -4px 15px 6px @shadow-color, -6px -4px 15px 6px @shadow-color;
+        }
+      }
+    }
+  }
+
+  > footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: @footer-height;
+    margin: 0;
+    pagging: 0;
+    background: transparent url('/img/bg.png') repeat-x bottom center fixed;
+    z-index: @z-index-top;
+
+    background-position-x: 0;
+    transition: background-position-x 10s linear;
+    opacity: 0.95;
+
+    @media @mobile, @short {
+      height: @footer-height-mobile;
+      box-shadow: 0 0 30px 15px @bg-color;
+    }
+  }
+}
+
+img {
+  .img-responsive;
+}
+
+p {
+  margin: @margin-regular 0;
+}
+
+a {
+  color: @highlight-color;
+  text-decoration: none;
+
+  &:hover { color: saturate(@main-color, 25%); }
+}
+
+.map * {
+  transition: none;
+}
+

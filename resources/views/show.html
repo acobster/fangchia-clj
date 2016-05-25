@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% block main-content %}
+
+  <article>
+
+    <h1>12/11 <span>at {{ venue }}</span></h1>
+
+    <div class="details-wrap">
+      <div class="with">
+        With:
+        <ul>
+          {% for band in guests %}
+            <li>
+              {% if band.link %}
+                <a href="{{ band.link }}">{{ band.name }}</a>
+              {% else %}
+                {{ band.name }}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="details">
+        <p><time>{{ date-time|date:"h:mm a"}}</time></p>
+        <p>{{ cover }}</p>
+        <p>{{ note }}</p>
+      </div>
+    </div>
+
+    {{ content|linebreaks|safe }}
+
+    <address>{{ address|linebreaks-br|safe }}</address>
+
+    <div id="map" class="map">
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.22&key=AIzaSyDrtNZJlqTcv7PCLHypLejKW5YLkqxPcAU">
+    </script>
+    <script src="/js/map.min.js"></script>
+    <div id="marker-info-wrapper" style="display:none">
+      <aside class="map-marker-info">
+        <h1>{{ venue }}</h1>
+        <p>{{ address|linebreaks-br|safe }}</p>
+      </aside>
+    </div>
+
+  </article>
+
+{% endblock %}
+

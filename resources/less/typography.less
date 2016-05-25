@@ -1,0 +1,261 @@
+
+
+/* Fonts */
+
+@font-face {
+   font-family: 'Day Roman';
+   src: url('fonts/day_roman-webfont.eot');
+   src: url('fonts/day_roman-webfont.eot?#iefix') format('embedded-opentype'),
+      url('fonts/day_roman-webfont.woff') format('woff'),
+      url('fonts/day_roman-webfont.ttf') format('truetype'),
+      url('fonts/day_roman-webfont.svg#Day%20Roman') format('svg');
+   font-weight: normal;
+   font-style: normal;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Crimson+Text:600italic);
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+
+.serif {
+  font-family: 'Day Roman', Palatino, serif;
+}
+
+.italic {
+  font-family: 'Crimson Text', 'Day Roman', Palatino, serif;
+  font-style: italic;
+}
+
+.sans-serif {
+  font-family: 'Open Sans', Helvetica, sans-serif;
+}
+
+
+
+/* Global Typography */
+
+body {
+  .serif;
+  font-size: 16px;
+
+  > section {
+    h1, h2, h3, h4, h5, h6 {
+      .sans-serif;
+      color: @highlight-color;
+      margin: 0.7em 0;
+
+      article > &:first-child { margin-top: 0.2em; }
+
+      span {
+        color: @copy-color;
+        font-size: 0.5em;
+        display: block;
+      }
+    }
+
+    h1 {
+      font-size: 3.5em;
+    }
+
+    h2 {
+      font-size: 3em;
+    }
+
+
+    h3 {
+      font-size: 2.3em;
+    }
+
+    h4 {
+      font-size: 1.7em;
+    }
+
+    h5 {
+      font-size: 1.2em;
+      font-variant: small-caps;
+    }
+
+    h6 {
+      font-size: 1em;
+      font-variant: small-caps;
+    }
+
+    .iframe-wrapper {
+      .wider;
+      position: relative;
+      height: 0;
+      overflow: hidden;
+
+      // 16x9 aspect ratio
+      padding-bottom: 56.25%;
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      &:first-child {
+        margin-top: 2em;
+      }
+    }
+  }
+}
+
+
+p {
+  font-size: 1em;
+  line-height: 1.7;
+}
+
+
+blockquote {
+  margin: 2em 1em 2em -2em;
+  min-height: 2em;
+  font-size: 1.7em;
+  letter-spacing: 0.5;
+  .italic;
+  color: @highlight-color;
+
+  @media @mobile {
+    margin-left: 0;
+  }
+
+  &:before {
+    content: "“";
+    float: left;
+    clear: right;
+    padding: 0 0.3em;
+    font-size: 3em;
+    line-height: 0.8;
+    .serif;
+    color: @secondary-highlight-color;
+
+    @media @mobile {
+      font-size: 5em;
+      padding: 0 0.2em 0 0;
+    }
+  }
+
+  p {
+    font-size: 0.6em;
+    .serif;
+    color: darken(@highlight-color, 10%);
+    text-align: right;
+    margin-right: 5em;
+
+    @media @mobile {
+      margin-right: 3em;
+    }
+
+    &:before {
+      content: "—";
+      padding: 0 0.7em 0 0.3em;
+    }
+  }
+}
+
+
+.wider {
+  margin: 1em 0 1em -15%;
+  width: 130%;
+  max-width: 130%;
+
+  @media @mobile {
+    margin: 1em 0;
+    width: 100%;
+  }
+}
+
+
+article {
+  img {
+    .wider;
+
+    .full {
+      margin: 1em 0;
+      float: none;
+      max-width: 100%;
+    }
+
+    &.left {
+      float: left;
+      left: 0;
+      margin: 1em 1.5em 1em -15%;
+      max-width: 50%;
+
+      @media @mobile {
+        .full;
+      }
+    }
+
+    &.right {
+      float: right;
+      right: 0;
+      margin: 1em -15% 1em 1.5em;
+      max-width: 50%;
+
+      @media @mobile {
+        .full;
+      }
+    }
+  }
+}
+
+
+
+
+/* Show Pages */
+
+.details-wrap {
+  .panels;
+  .sans-serif;
+  font-size: 1.2em;
+
+  .with, .details {
+    .panel;
+
+    ul {
+      list-style-type: none;
+
+      li { .tight; }
+    }
+
+    p { .tight; }
+  }
+}
+
+address {
+  margin: @margin-wide 0;
+  .sans-serif;
+  color: @highlight-color;
+  font-size: 1.5em;
+  font-style: normal;
+}
+
+.map {
+  .wider;
+  height: 400px;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.map-marker-info {
+  font-size: 18px;
+  color: @secondary-color;
+
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+  }
+
+  p {
+    margin: @margin-small 0;
+  }
+}
