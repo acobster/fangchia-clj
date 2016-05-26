@@ -4,7 +4,7 @@
 
   <article itemscope itemtype="http://schema.org/MusicEvent">
 
-    <h1>12/11 <span>at {{ venue.name }}</span></h1>
+    <h1>{{ date-time|date:"M/d" }} <span>at {{ venue.name }}</span></h1>
     <div itemprop="location">
       <meta itemprop="name" content="{{ venue.name }}">
       <link itemprop="sameAs" href="{{ venue.url }}">

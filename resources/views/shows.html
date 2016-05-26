@@ -4,5 +4,11 @@
 
   <h1>Shows</h1>
 
+  <p>date-time: {{date-time}}</p>
+
+  {% for show in shows %}
+	  <p>{{show.name}}</p>
+  {% endfor %}
+
 {% endblock %}
 
