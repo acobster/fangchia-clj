@@ -17,7 +17,7 @@
             :url "http://www.tractortavern.com/"
             :address "15228 Lake Hills Blvd\nBellevue, WA"}
     :date-time (java.util.Date. 2016 8 9 20 30)
-    :guests [{:name "Bad Luck" :link "http://bandcamp.com" :type "Organization"} ; TODO offer type dropdown
+    :guests [{:name "Bad Luck" :link "http://bandcamp.com" :performer-type "Organization"} ; TODO offer type dropdown
              {:name "Humidity and Static" :link "http://bandcamp.com"}
              {:name "The Best Dancers"}]
     :cover "NO COVER"
