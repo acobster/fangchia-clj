@@ -13,10 +13,11 @@
   (GET "/" [] (render-file "home.html" {}))
   (GET "/shows" [] (render-file "shows.html" {}))
   (GET "/shows/:slug" [slug] (render-file "show.html" {
-    :venue "Ground Zero Music Program"
-    :address "15228 Lake Hills Blvd\nBellevue, WA"
+    :venue {:name "Ground Zero Music Program"
+            :url "http://www.tractortavern.com/"
+            :address "15228 Lake Hills Blvd\nBellevue, WA"}
     :date-time (java.util.Date. 2016 8 9 20 30)
-    :guests [{:name "Bad Luck" :link "http://bandcamp.com"}
+    :guests [{:name "Bad Luck" :link "http://bandcamp.com" :type "Organization"} ; TODO offer type dropdown
              {:name "Humidity and Static" :link "http://bandcamp.com"}
              {:name "The Best Dancers"}]
     :cover "NO COVER"

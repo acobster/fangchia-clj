@@ -2,20 +2,26 @@
 
 {% block main-content %}
 
-  <article>
+  <article itemscope itemtype="http://schema.org/MusicEvent">
 
-    <h1>12/11 <span>at {{ venue }}</span></h1>
+    <h1>12/11 <span>at {{ venue.name }}</span></h1>
+    <div itemprop="location">
+      <meta itemprop="name" content="{{ venue.name }}">
+      <link itemprop="sameAs" href="{{ venue.url }}">
+      <meta itemprop="address" content="{{ venue.address }}">
+    </div>
 
     <div class="details-wrap">
       <div class="with">
         With:
         <ul>
           {% for band in guests %}
-            <li>
+            <li itemprop="performer" itemscope itemtype="http://schema.org/MusicGroup">
               {% if band.link %}
-                <a href="{{ band.link }}">{{ band.name }}</a>
+                <a href="{{ band.link }}" itemprop="name">{{ band.name }}</a>
+                <link itemprop="sameAs" href="{{ band.link }}">
               {% else %}
-                {{ band.name }}
+                <span itemprop="name">{{ band.name }}</span>
               {% endif %}
             </li>
           {% endfor %}
@@ -23,15 +29,15 @@
       </div>
 
       <div class="details">
-        <p><time>{{ date-time|date:"h:mm a"}}</time></p>
+        <p><time itemprop="startDate" content="{{ date-time }}">{{ date-time|date:"h:mm a"}}</time></p>
         <p>{{ cover }}</p>
         <p>{{ note }}</p>
       </div>
     </div>
 
-    {{ content|linebreaks|safe }}
+    <div itemprop="description">{{ content|linebreaks|safe }}</div>
 
-    <address>{{ address|linebreaks-br|safe }}</address>
+    <address>{{ venue.address|linebreaks-br|safe }}</address>
 
     <div id="map" class="map">
     </div>
@@ -41,8 +47,8 @@
     <script src="/js/map.min.js"></script>
     <div id="marker-info-wrapper" style="display:none">
       <aside class="map-marker-info">
-        <h1>{{ venue }}</h1>
-        <p>{{ address|linebreaks-br|safe }}</p>
+        <h1>{{ venue.name }}</h1>
+        <p>{{ venue.address|linebreaks-br|safe }}</p>
       </aside>
     </div>
 

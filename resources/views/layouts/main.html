@@ -5,12 +5,17 @@
   <title>Fang Chia</title>
   <link rel="stylesheet" href="/css/style.css">
   <script src="/js/app.min.js"></script>
+
+  {% block head %}
+    <!-- look ma, no head! -->
+  {% endblock %}
+
 </head>
-<body>
+<body itemscope itemtype="http://schema.org/MusicGroup">
   <header>
     <div class="site-heading-wrapper">
       <a href="/" title="FangChia.com">
-        <h1 class="site-heading">Fang Chia</h1>
+        <h1 class="site-heading" itemprop="name">Fang Chia</h1>
       </a>
     </div>
 
