@@ -2,11 +2,12 @@
 
 window.addEventListener( 'load', function() {
 
+  var mapElement = document.getElementById('map');
   var venue = new google.maps.LatLng({lat: 47.6023262, lng: -122.1374963}); // TODO don't hard-code
   var center = { lng: venue.lng(), lat: venue.lat() + LATITUDE_ADJUSTMENT };
 
   // Create the map
-  var map = new google.maps.Map( document.getElementById('map'), {
+  var map = new google.maps.Map( mapElement, {
     center: center,
     zoom: 15,
     styles: mapStyles,
@@ -27,6 +28,10 @@ window.addEventListener( 'load', function() {
     maxWidth: 400,
   });
   infoWindow.open( map, marker );
+
+  map.addListener('idle', function() {
+    mapElement.classList.add('visible');
+  });
 
   marker.addListener('click', function() {
     infoWindow.open(map, marker);

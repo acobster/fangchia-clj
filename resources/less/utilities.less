@@ -156,3 +156,27 @@
           transform: rotate(@degrees);
 }
 
+// Animations
+
+.keyframes(@name; @arguments) {
+  @-o-keyframes @name { @arguments(); }
+  @-moz-keyframes @name { @arguments(); }
+  @-webkit-keyframes @name { @arguments(); }
+  @keyframes @name { @arguments(); }
+}
+
+.animation(@arguments) {
+  -webkit-animation: @arguments;
+  -moz-animation: @arguments;
+  animation: @arguments;
+}
+
+
+.animate-slow-flicker {
+  .keyframes(flicker; {
+    0%   { opacity:1; }
+    100%  { opacity:0; }
+  });
+
+  .animation(flicker 1s linear infinite alternate);
+}

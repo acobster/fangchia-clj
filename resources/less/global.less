@@ -167,7 +167,27 @@ a {
   &:hover { color: saturate(@main-color, 25%); }
 }
 
-.map * {
-  transition: none;
+.map-wrapper {
+  position: relative;
+
+  .map {
+    transition: 3s opacity;
+    opacity: 0;
+    &.visible { opacity: 1; }
+  }
+
+  &:before {
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+    content: 'loading...';
+    text-align: center;
+    .animate-slow-flicker;
+  }
+
+  .map * {
+    transition: none;
+  }
 }
 

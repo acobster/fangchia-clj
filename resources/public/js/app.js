@@ -9913,21 +9913,19 @@ $(document).ready(function(){
   /* Bandcamp player */
   document.getElementById('open-player-btn').addEventListener('click', function() {
     var wrapper = document.getElementById('player-wrapper');
-    var klass = wrapper.getAttribute('class') || '';
 
-    if (klass.indexOf('-open') > -1) {
+    if (wrapper.classList.contains('-open')) {
       // it's open; close it
-      console.log("it's open; close it");
-      wrapper.setAttribute('class', klass.replace('-open', ''));
+      wrapper.classList.add('-open');
     } else {
       // it's closed; open it
-      console.log("it's closed; open it");
-      wrapper.setAttribute('class', klass+' -open');
+      wrapper.classList.remove('-open');
     }
   });
 
 
 
+  // TODO - do this in pure CSS and get rid of this crufty JS
   /* Make the footer drift across the screen */
 
   var BREAKPOINT_MOBILE = 767;
