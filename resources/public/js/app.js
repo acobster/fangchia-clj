@@ -9895,16 +9895,17 @@ $.fn.responsiveNav = function( options ) {
 	return this;
 };
 })(jQuery);
-(function($){
-$(document).ready(function(){
+(function(){
+window.addEventListener( 'load', function() {
 
-  $('.responsive-nav').responsiveNav();
+  jQuery('.responsive-nav').responsiveNav();
 
-  $(window).scroll(function() {
-    if( $(this).scrollTop() === 0 ) {
-      $('.site-heading-wrapper').removeClass('corner');
+  window.addEventListener( 'scroll', function() {
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    if( scrollTop === 0 ) {
+      document.getElementsByClassName('site-heading-wrapper')[0].classList.remove('corner');
     } else {
-      $('.site-heading-wrapper').addClass('corner');
+      document.getElementsByClassName('site-heading-wrapper')[0].classList.add('corner');
     }
   });
 
@@ -9924,4 +9925,4 @@ $(document).ready(function(){
   });
 
 });
-})(jQuery);
+})();
