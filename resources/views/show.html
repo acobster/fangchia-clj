@@ -33,10 +33,12 @@
 
     <address>{{ address|linebreaks-br|safe }}</address>
 
-    <div id="map" class="map">
+    <div class="map-wrapper loading">
+      <div id="map" class="map">
+      </div>
     </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.22&key=AIzaSyDrtNZJlqTcv7PCLHypLejKW5YLkqxPcAU">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyDrtNZJlqTcv7PCLHypLejKW5YLkqxPcAU">
     </script>
     <script src="/js/map.min.js"></script>
     <div id="marker-info-wrapper" style="display:none">
