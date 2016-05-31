@@ -142,35 +142,12 @@ body {
     z-index: @z-index-top;
     opacity: 0.95;
 
-    @-webkit-keyframes drift {
+    .keyframes(drift; {
       from { background-position-x: 0; }
       to { background-position-x: 250px; }
-    }
-    @-moz-keyframes drift {
-      from { background-position-x: 0; }
-      to { background-position-x: 250px; }
-    }
-    @-o-keyframes drift {
-      from { background-position-x: 0; }
-      to { background-position-x: 250px; }
-    }
-    @keyframes drift {
-      from { background-position-x: 0; }
-      to { background-position-x: 250px; }
-    }
+    });
 
-    -webkit-animation: drift 30s linear infinite;
-    -moz-animation: drift 30s linear infinite;
-    -o-animation: drift 30s linear infinite;
-    animation: drift 30s linear infinite;
-
-    @media @mobile {
-      -webkit-animation: drift 10s linear infinite;
-      -moz-animation: drift 10s linear infinite;
-      -o-animation: drift 10s linear infinite;
-      animation: drift 10s linear infinite;
-    }
-
+    .animation(drift 10s linear infinite);
 
     @media @mobile, @short {
       height: @footer-height-mobile;
