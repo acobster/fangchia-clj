@@ -9912,17 +9912,24 @@ window.addEventListener( 'load', function() {
 
 
   /* Bandcamp player */
+
   document.getElementById('open-player-btn').addEventListener('click', function() {
     var wrapper = document.getElementById('player-wrapper');
 
-    if (wrapper.classList.contains('-open')) {
+    if (wrapper.classList.contains('open')) {
       // it's open; close it
-      wrapper.classList.add('-open');
+      wrapper.classList.remove('open');
     } else {
       // it's closed; open it
-      wrapper.classList.remove('-open');
+      wrapper.classList.add('open');
     }
   });
+
+  if (!window.localStorage.repeatVisit) {
+    var btnWrapper = document.getElementById('open-player-btn-wrapper');
+    btnWrapper.classList.add('bouncy');
+    window.localStorage.repeatVisit = true;
+  }
 
 });
 })();

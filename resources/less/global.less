@@ -72,7 +72,7 @@ body {
     bottom: @footer-height;
     margin-left: -@player-width;
 
-    &.-open {
+    &.open {
       margin-left: 0;
       box-shadow: 0 0px 15px 6px @bg-color;
 
@@ -114,6 +114,10 @@ body {
           border-color: transparent transparent transparent @highlight-color;
         }
       }
+
+      &.bouncy {
+        .animate-bounce;
+      }
     }
 
 
@@ -121,7 +125,7 @@ body {
       bottom: @footer-height-mobile;
       .small;
 
-      &.-open {
+      &.open {
         .open-player-btn-wrapper {
           bottom: @player-height-small;
           right: 100px;
