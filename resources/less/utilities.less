@@ -207,3 +207,17 @@
 
   .animation(bounce 1s ease-out 500ms 3);
 }
+
+
+.keyframes(drift; {
+  from { background-position-x: 0; }
+  to { background-position-x: 250px; }
+});
+
+.drift-right {
+  .animation(drift 10s linear infinite);
+}
+
+.drift-left {
+  .animation(drift 10s linear infinite reverse);
+}

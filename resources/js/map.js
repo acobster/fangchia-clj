@@ -30,7 +30,8 @@ window.addEventListener( 'load', function() {
   infoWindow.open( map, marker );
 
   map.addListener('idle', function() {
-    mapElement.classList.add('visible');
+    console.log('done loading');
+    mapElement.parentNode.classList.remove('loading');
   });
 
   marker.addListener('click', function() {
