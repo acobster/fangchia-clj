@@ -4,11 +4,15 @@
 
   <h1>Shows</h1>
 
-  <p>date-time: {{date-time}}</p>
-
-  {% for show in shows %}
-	  <p>{{show.name}}</p>
-  {% endfor %}
+  <ul>
+    {% for show in shows %}
+      <li class="show">
+        <a href="/shows/{{ show.slug }}">
+          {{ show.date-time|date:"M/d" }} <span>at {{ show.venue.name }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
 
 {% endblock %}
 

@@ -5,11 +5,12 @@
             [clj-time.core :as t]
             [clj-time.format :as f]
             [monger.core :as mg]
-            [monger.collection :as mc])
+            [monger.collection :as mc]
+            [monger.operators :refer :all])
   (:import [com.mongodb MongoOptions ServerAddress]))
 
 ; TODO authentication
-(def conn  (mg/connect {:host "localhost" :port 27017}))
+(def conn  (mg/connect {:host "localhost" :port 27017 :connect-timeout 10000}))
 (def db    (mg/get-db conn "test"))
 
 ; Template location
@@ -23,31 +24,19 @@
 
 ; TODO store/query timestamp instead
 (defn get-shows []
-  (let [date-str (f/unparse (f/formatter "YYYY-MM-DD H:mm:ss") (t/now))]
-    (into-array
-      (mc/find-maps db "shows" { :date-time {"$gt" date-str } }))))
+  (let [date-str (f/unparse (f/formatters :basic-date-time) (t/now))]
+    (doall (mc/find-maps db "shows" {}))))
 
 (defn get-show [slug]
-  {
-    :slug slug
-    :venue {:name "Ground Zero Music Program"
-            :url "http://www.tractortavern.com/"
-            :address "15228 Lake Hills Blvd\nBellevue, WA"}
-    :date-time (java.util.Date. 2016 7 9 20 30)
-    :guests [{:name "Bad Luck" :link "http://bandcamp.com" :performer-type "Organization"} ; TODO offer type dropdown
-             {:name "Humidity and Static" :link "http://bandcamp.com"}
-             {:name "The Best Dancers"}]
-    :cover "NO COVER"
-    :note "21+"
-    :content "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nNon est ista, inquam, Piso, magna dissensio."})
+  (mc/find-one-as-map db "shows" {:slug slug}))
 
 (defn render-page [slug]
   (try
     (render-file (str slug ".html") {:slug slug})
     (catch java.io.FileNotFoundException e (render-file "404.html" {}))))
 
-(defn render-shows []
-  (render-file "shows.html" {:shows (get-shows)}))
+    (defn render-shows []
+      (render-file "shows.html" {:shows (get-shows) :shows-class (.getClass (get-shows))}))
 
 (defn render-show [slug]
   (render-file "show.html" (get-show slug)))
