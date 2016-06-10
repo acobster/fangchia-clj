@@ -26,8 +26,6 @@ module.exports = function(grunt) {
       js: {
         nonull: true,
         src: [
-          'node_modules/jquery/dist/jquery.js',
-          'resources/js/responsive-nav.js',
           'resources/js/project.js',
         ],
         dest: 'resources/public/js/app.js'
@@ -61,7 +59,6 @@ module.exports = function(grunt) {
         eqnull: true,
         browser: true,
         globals: {
-          'jQuery': true,
           'console': true,
           'require': true,
           'google': true,
@@ -71,7 +68,7 @@ module.exports = function(grunt) {
         src: 'Gruntfile.js'
       },
       js: {
-        src: ['resources/js/project.js', 'resources/js/responsive-nav.js']
+        src: ['resources/js/project.js']
       },
       map_js: {
         src: 'resources/js/map.js'

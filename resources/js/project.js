@@ -1,9 +1,6 @@
 (function(){
 window.addEventListener( 'load', function() {
 
-  jQuery('.responsive-nav').responsiveNav();
-
-
   /* Banner logo */
 
   // Push the FANG CHIA logo up into the corner when the user scrolls down

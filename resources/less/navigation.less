@@ -79,48 +79,46 @@ nav {
 }//end nav.main-nav
 
 
-.menu-btn {
-	cursor: pointer;
-	display: none;
+.nav-trigger {
+	position: absolute;
+	right: 10000em;
+}
 
-	@media @mobile {
+label[for="nav-trigger"] {
+	display: none;
+}
+
+
+@media @mobile {
+	label[for="nav-trigger"] {
 		display: block;
 		position: absolute;
 		top: 20px;
 		right: 20px;
-
-		.toggle{
-			margin: 0 auto 5px;
-			width: 32px;
-			height: 21px;
-
-			> span{
-				display: block;
-				width: 100%;
-				height: 3px;
-				margin-bottom: 6px;
-				background: @highlight-color;
-				.transition(all @transition-seconds ease);
-			}
-		}
+		z-index: 5;
+		cursor: pointer;
+		margin: 0 auto 5px;
+		width: 32px;
+		height: 21px;
 
 		> span {
-			//menu text
-			display: none;
+			display: block;
+			width: 100%;
+			height: 3px;
+			margin-bottom: 6px;
+			background: @highlight-color;
+			.transition(all @transition-seconds ease);
 		}
 
-		&.active {
-			.toggle {
-				.rotate(-45deg);
+		.nav-trigger:checked + & {
+			.rotate(-45deg);
 
-				span {
-					&:first-of-type { .translateY(11px); }
-					&:nth-of-type(2) { .opacity(0); }
-					&:last-of-type { .transform(rotate(-90deg) translateX(7px)); }
-				}
+			span {
+				&:first-of-type { .translateY(11px); }
+				&:nth-of-type(2) { .opacity(0); }
+				&:last-of-type { .transform(rotate(-90deg) translateX(7px)); }
 			}
 		}
-
-		&:hover { text-decoration: none; }
 	}
+
 }
