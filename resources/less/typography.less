@@ -38,7 +38,7 @@ body {
   .serif;
   font-size: 16px;
 
-  > section {
+  > main {
     h1, h2, h3, h4, h5, h6 {
       .sans-serif;
       color: @highlight-color;
@@ -106,8 +106,33 @@ body {
 
 
 p {
+  margin: @margin-regular 0;
   font-size: 1em;
   line-height: 1.7;
+}
+
+a {
+  color: @highlight-color;
+  text-decoration: none;
+  .no-transition-on(color);
+
+  &:hover { color: @copy-color; }
+
+  &.back {
+    display: block;
+    margin: 2em 0 0;
+
+    &:before {
+      content: "←";
+      height: 1em;
+      width: 2em;
+      margin: 0 0.3em;
+    }
+  }
+}
+
+img {
+  .img-responsive;
 }
 
 

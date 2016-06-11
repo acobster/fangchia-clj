@@ -1,7 +1,9 @@
 /* Breakpoints */
 
-@mobile:       ~"only screen and (max-width: 767px)";
-@short:       ~"only screen and (max-height: 700px)";
+@mobile:        ~"only screen and (max-width: 767px)";
+@mobile-medium: ~"only screen and (min-width: 506px) and (max-width: 766px)";
+@mobile-small:  ~"only screen and (max-width: 505px)";
+@short:         ~"only screen and (max-height: 700px)";
 
 
 /* Colors */
@@ -15,6 +17,7 @@
 @purple: #302B54;
 @orange: #F37413;
 @light-orange: #EC8332;
+@dusk: rgba(0,0,50,0.6);
 
 @main-color: @bright-blue;
 @bg-color: @black;
@@ -49,6 +52,7 @@
 
 @z-index-top: 100;
 @z-index-bottom: 0;
+@z-index-below-siblings: -1;
 
 
 
@@ -125,6 +129,8 @@
 // Transitions
 .transition(@transition) {
   -webkit-transition: @transition;
+     -moz-transition: @transition;
+       -o-transition: @transition;
           transition: @transition;
 }
 

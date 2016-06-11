@@ -41,61 +41,60 @@ nav {
 			}//end second level ul
 
 			&:hover{
-				> a { color: @white; }
+				> a { color: @copy-color; }
 				> ul {
 					left: auto;
 					.opacity(1);
 				}
 			}
+		}
+	}
+}
 
-		}//end li
 
-	}//end ul
+.nav-trigger {
+	// never show this; this is only for representing mobile nav state
+	position: absolute;
+	right: 10000em;
+}
+
+label[for="nav-trigger"] {
+	// mobile only
+	right: -32px;
+}
 
 
-	@media @mobile{
+/*
+ * Mobile/tablet nav
+ */
+
+
+
+@media @mobile {
+	nav {
 		width: @off-canvas-width;
 		height: 100%;
-		top: 0;
+		top: @header-height-mobile;
 		right: -(@off-canvas-width);
 		left: auto; bottom: auto;
-
-		padding: 20px;
-
-		background: @grey;
+		padding: @margin-regular;
+		background: @black;
+		z-index: @z-index-below-siblings;
 
 		ul{
 			float: none;
 
 			> li {
 				display: block;
+			}
+		}
+	}
 
-			}//end li
-		}//end ul
-
-
-	}//end media
-
-}//end nav.main-nav
-
-
-.nav-trigger {
-	position: absolute;
-	right: 10000em;
-}
-
-label[for="nav-trigger"] {
-	display: none;
-}
-
-
-@media @mobile {
 	label[for="nav-trigger"] {
 		display: block;
 		position: absolute;
-		top: 20px;
-		right: 20px;
-		z-index: 5;
+		top: @margin-regular;
+		right: @margin-regular;
 		cursor: pointer;
 		margin: 0 auto 5px;
 		width: 32px;
@@ -109,6 +108,7 @@ label[for="nav-trigger"] {
 			background: @highlight-color;
 			.transition(all @transition-seconds ease);
 		}
+		&:hover > span { background: @copy-color; }
 
 		.nav-trigger:checked + & {
 			.rotate(-45deg);
@@ -118,7 +118,22 @@ label[for="nav-trigger"] {
 				&:nth-of-type(2) { .opacity(0); }
 				&:last-of-type { .transform(rotate(-90deg) translateX(7px)); }
 			}
+
+			// Show the nav!
+			+ nav {
+				right: 0;
+			}
 		}
 	}
-
 }
+
+.nav-trigger:checked + label + nav {
+	@media @mobile-medium {
+		box-shadow: 0 0 282px 94px @black, -300px 0 200px 170px @dusk;
+	}
+
+	@media @mobile-small {
+		box-shadow: 0 0 100px 50px @black, -100px 0 200px 170px @dusk;
+	}
+}
+

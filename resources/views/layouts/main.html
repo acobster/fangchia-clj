@@ -26,34 +26,34 @@
       <span></span>
     </label>
 
-    <nav class="responsive-nav">
+    <nav>
       <ul>
-        <li class="nav-main-item">
-          <a class="nav-main-link" href="/">Home</a>
+        <li>
+          <a href="/">Home</a>
         </li>
-        <li class="nav-main-item">
-          <a class="nav-main-link" href="/music">Music</a>
+        <li>
+          <a href="/music">Music</a>
         </li>
-        <li class="nav-main-item">
-          <a class="nav-main-link" href="/shows">Shows</a>
+        <li>
+          <a href="/shows">Shows</a>
         </li>
-        <li class="nav-main-item">
-          <a class="nav-main-link" href="/photos">photos</a>
+        <li>
+          <a href="/photos">Photos</a>
         </li>
-        <li class="nav-main-item">
-          <a class="nav-main-link" href="/about">about</a>
+        <li>
+          <a href="/about">About</a>
         </li>
       </ul>
     </nav>
   </header>
 
-  <section>
+  <main>
 
     {% block main-content %}
       <!-- nothin here -->
     {% endblock %}
 
-  </section>
+  </main>
 
   <aside id="player-wrapper">
     <div id="open-player-btn-wrapper" class="open-player-btn-wrapper">
@@ -68,7 +68,7 @@
     </div>
   </aside>
 
-  <footer>
+  <footer class="site-footer">
   </footer>
 
 </body>
