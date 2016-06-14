@@ -26,6 +26,15 @@ window.addEventListener( 'load', function() {
   nav.go(location.pathname);
 
 
+  // close mobile nav on click
+  Array.prototype.slice.call(document.getElementsByClassName('nav-link'))
+    .forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.getElementById('nav-trigger').checked = false;
+      });
+    });
+
+
 
   /* Banner logo */
 
