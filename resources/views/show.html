@@ -1,62 +1,56 @@
-{% extends "layouts/main.html" %}
+<article itemscope itemtype="http://schema.org/MusicEvent">
 
-{% block main-content %}
+  <a class="back" href="/shows">shows</a>
 
-  <article itemscope itemtype="http://schema.org/MusicEvent">
+  <h1 itemprop="name">{{ date-time|date:"M/d" }} <span>at {{ venue.name }}</span></h1>
+  <div itemprop="location" itemtype="http://schema.org/Place" itemscope>
+    <meta itemprop="name" content="{{ venue.name }}">
+    <link itemprop="sameAs" href="{{ venue.url }}">
+    <meta itemprop="address" content="{{ venue.address }}">
+  </div>
 
-    <a class="back" href="/shows">shows</a>
-
-    <h1 itemprop="name">{{ date-time|date:"M/d" }} <span>at {{ venue.name }}</span></h1>
-    <div itemprop="location" itemtype="http://schema.org/Place" itemscope>
-      <meta itemprop="name" content="{{ venue.name }}">
-      <link itemprop="sameAs" href="{{ venue.url }}">
-      <meta itemprop="address" content="{{ venue.address }}">
+  <div class="details-wrap">
+    <div class="with">
+      With:
+      <ul>
+        {% for band in guests %}
+          <li itemprop="performer" itemscope itemtype="http://schema.org/{{ band.performer-type|default:"MusicGroup" }}">
+            {% if band.link %}
+              <a href="{{ band.link }}" itemprop="name">{{ band.name }}</a>
+              <link itemprop="sameAs" href="{{ band.link }}">
+            {% else %}
+              <span itemprop="name">{{ band.name }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
     </div>
 
-    <div class="details-wrap">
-      <div class="with">
-        With:
-        <ul>
-          {% for band in guests %}
-            <li itemprop="performer" itemscope itemtype="http://schema.org/{{ band.performer-type|default:"MusicGroup" }}">
-              {% if band.link %}
-                <a href="{{ band.link }}" itemprop="name">{{ band.name }}</a>
-                <link itemprop="sameAs" href="{{ band.link }}">
-              {% else %}
-                <span itemprop="name">{{ band.name }}</span>
-              {% endif %}
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-
-      <div class="details">
-        <p><time itemprop="startDate" content="{{ date-time }}">{{ date-time|date:"h:mm a"}}</time></p>
-        <p>{{ cover }}</p>
-        <p>{{ note }}</p>
-      </div>
+    <div class="details">
+      <p><time itemprop="startDate" content="{{ date-time }}">{{ date-time|date:"h:mm a"}}</time></p>
+      <p>{{ cover }}</p>
+      <p>{{ note }}</p>
     </div>
+  </div>
 
-    <div itemprop="description">{{ content|linebreaks|safe }}</div>
+  <div itemprop="description">{{ content|linebreaks|safe }}</div>
 
-    <address>{{ venue.address|linebreaks-br|safe }}</address>
+  <address>{{ venue.address|linebreaks-br|safe }}</address>
 
-    <div class="map-wrapper loading">
-      <div id="map" class="map">
-      </div>
+  <div class="map-wrapper loading">
+    <div id="map" class="map">
     </div>
+  </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyDrtNZJlqTcv7PCLHypLejKW5YLkqxPcAU">
-    </script>
-    <script src="/js/map.min.js"></script>
-    <div id="marker-info-wrapper" style="display:none">
-      <aside class="map-marker-info">
-        <h1>{{ venue.name }}</h1>
-        <p>{{ venue.address|linebreaks-br|safe }}</p>
-      </aside>
-    </div>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyDrtNZJlqTcv7PCLHypLejKW5YLkqxPcAU">
+  </script>
+  <script src="/js/map.min.js"></script>
+  <div id="marker-info-wrapper" style="display:none">
+    <aside class="map-marker-info">
+      <h1>{{ venue.name }}</h1>
+      <p>{{ venue.address|linebreaks-br|safe }}</p>
+    </aside>
+  </div>
 
-  </article>
-
-{% endblock %}
+</article>
 

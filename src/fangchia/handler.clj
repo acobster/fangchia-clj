@@ -44,7 +44,8 @@
 
 ; routing!
 (defroutes app-routes
-  (GET "/" [] (render-page "home"))
+  (GET "/" [] (render-page "index"))
+  (GET "/home" [] (render-page "home"))
 
   (GET "/shows" [] (render-shows))
 

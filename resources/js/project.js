@@ -1,5 +1,31 @@
 (function(){
+var router = new Router();
+
+var handler = function(url) {
+  url = (url === '/') ? '/home' : url;
+
+  fetch(url).then(function(response) {
+    return response.text();
+  }).then(function(html) {
+    document.getElementById('main').innerHTML = html;
+  });
+};
+
+router.addRoute('/', handler);
+router.addRoute('/:slug', handler);
+router.addRoute('/shows/:slug', handler);
+
 window.addEventListener( 'load', function() {
+
+  // Load view on navigation events
+  var nav = new Nav(function() { router.dispatch(location.pathname); });
+  nav.bind(document);
+  nav.observe(document.getElementById('main'));
+
+  // load the route on load
+  nav.go(location.pathname);
+
+
 
   /* Banner logo */
 

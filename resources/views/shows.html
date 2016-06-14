@@ -1,28 +1,22 @@
-{% extends "layouts/main.html" %}
+<h1>Shows</h1>
 
-{% block main-content %}
+<ul>
 
-  <h1>Shows</h1>
+  {% for show in shows %}
+    <li class="show" itemscope itemtype="http://schema.org/MusicEvent">
+      <a href="/shows/{{ show.slug }}" itemprop="url">
+        <div itemprop="name">
+          <time itemprop="startDate" datetime="{{ show.date-time }}">{{ show.date-time|date:"M/d" }}</time>
+          at
+          <span itemprop="location" itemtype="http://schema.org/Place" itemscope>
+            <span itemprop="name">{{ show.venue.name }}</span>
+            <link itemprop="sameAs" href="{{ show.venue.url }}">
+            <meta itemprop="address" content="{{ show.venue.address }}">
+          </span>
+        </div>
+      </a>
+    </li>
+  {% endfor %}
 
-  <ul>
-
-    {% for show in shows %}
-      <li class="show" itemscope itemtype="http://schema.org/MusicEvent">
-        <a href="/shows/{{ show.slug }}" itemprop="url">
-          <div itemprop="name">
-            <time itemprop="startDate" datetime="{{ show.date-time }}">{{ show.date-time|date:"M/d" }}</time>
-            at
-            <span itemprop="location" itemtype="http://schema.org/Place" itemscope>
-              <span itemprop="name">{{ show.venue.name }}</span>
-              <link itemprop="sameAs" href="{{ show.venue.url }}">
-              <meta itemprop="address" content="{{ show.venue.address }}">
-            </span>
-          </div>
-        </a>
-      </li>
-    {% endfor %}
-
-  </ul>
-
-{% endblock %}
+</ul>
 

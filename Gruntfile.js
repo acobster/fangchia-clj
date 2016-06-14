@@ -25,9 +25,7 @@ module.exports = function(grunt) {
       },
       js: {
         nonull: true,
-        src: [
-          'resources/js/project.js',
-        ],
+        src: '<%= jshint.js.src %>',
         dest: 'resources/public/js/app.js'
       }
     },
@@ -62,13 +60,20 @@ module.exports = function(grunt) {
           'console': true,
           'require': true,
           'google': true,
+          'fetch': true,
+          'Router': true,
+          'Nav': true,
         }
       },
       gruntfile: {
         src: 'Gruntfile.js'
       },
       js: {
-        src: ['resources/js/project.js']
+        src: [
+          'resources/js/router.js',
+          'resources/js/nav.js',
+          'resources/js/project.js'
+        ]
       },
       map_js: {
         src: 'resources/js/map.js'
