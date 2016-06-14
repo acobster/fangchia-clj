@@ -68,6 +68,11 @@ body {
     margin: 0 auto @footer-height;
     padding: (@heading-margin-top + @header-height + @heading-margin-bottom) @margin-regular 3em;
 
+    transition: opacity 0.3s ease;
+    &.loading {
+      .opacity(0.5);
+    }
+
     @media @mobile {
       padding-top: @header-height-mobile;
     }

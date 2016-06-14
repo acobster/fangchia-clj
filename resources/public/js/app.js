@@ -117,12 +117,16 @@ Nav.prototype.go = function(route) {
 var router = new Router();
 
 var handler = function(url) {
+  var main = document.getElementById('main');
+  main.classList.add('loading');
+
   url = (url === '/') ? '/home' : url;
 
   fetch(url).then(function(response) {
     return response.text();
   }).then(function(html) {
-    document.getElementById('main').innerHTML = html;
+    main.innerHTML = html;
+    main.classList.remove('loading');
   });
 };
 
