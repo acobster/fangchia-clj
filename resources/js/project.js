@@ -5,9 +5,7 @@ var handler = function(url) {
   var main = document.getElementById('main');
   main.classList.add('loading');
 
-  url = (url === '/') ? '/home' : url;
-
-  fetch(url).then(function(response) {
+  fetch(url+'?ajax=1').then(function(response) {
     return response.text();
   }).then(function(html) {
     main.innerHTML = html;

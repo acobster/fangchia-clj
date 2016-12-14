@@ -19,6 +19,7 @@
 (selmer.parser/cache-off!)
 
 
+; "Model" code
 (defn get-page [slug]
   {:slug slug})
 
@@ -32,16 +33,22 @@
 
 
 
-(defn render-page-content [slug]
+(defn render-page-content
+  "Render content for the page identified by slug, without layout markup"
+  [slug]
+  ; TODO get this content from the database
   (try
     (render-file (str slug ".html") {:slug slug})
     (catch java.io.FileNotFoundException e (render-file "404.html" {}))))
 
-(defn render-shows []
+(defn render-shows
+  "Render the shows page, without layout markup"
+  []
   (render-file "shows.html" {:shows (get-shows) :shows-class (.getClass (get-shows))}))
 
 (defn render-show [slug]
   (render-file "show.html" (get-show slug)))
+
 
 
 (defn render-full-page
@@ -50,48 +57,23 @@
     (render-file "index.html" {:content page-content}))
 
 (defn render-page
-  [slug]
-  (let [page-content (render-page-content slug)]
-    (render-full-page page-content)))
+  "Render a page, with or without containing layout markup depending on ajax"
+  [content, ajax]
+  (if ajax
+    content
+    (render-full-page content)))
 
-
-
-; (defn- ajax-route
-;   "For the given routing rule form, define a corresponding /ajax route form.
-;   The resulting form can be passed, alongside the original route, to the defroutes macro."
-;   [rule]
-;   (let [[method route & the-rest] rule]
-;     (concat
-;       (list method (str "/ajax" route))
-;       the-rest)))
-
-; (defn- render-page-route
-;   "Wrap the routing rule form in a form to call `render-page`"
-;   [rule]
-;   '(render-page "slug" rule))
-
-
-(defmacro dynamic-routes [name & routes]
-  "Expand argument routes into identical routes and their /ajax counterparts.
-  Very similar to the defroutes macro, but requires name (for simplicity)."
-  `(defroutes ~name
-    ~@(letfn [(dynamic-route [rule]
-      ; replace the route handler with one that checks for the `ajax` GET param
-      (concat
-        (drop-last rule)
-        (list (last rule))))] ; TODO ???
-      (map #(dynamic-route %) routes))))
 
 
 ; routing!
-(dynamic-routes app-routes
-  (GET "/" [ajax] (render-page-content "home"))
+(defroutes app-routes
+  (GET "/" [ajax] (render-page (render-page-content "home") ajax))
 
-  (GET "/shows" [ajax] (render-shows))
+  (GET "/shows" [ajax] (render-page (render-shows) ajax))
 
-  (GET "/:slug" [ajax slug] (render-page-content slug))
+  (GET "/:slug" [ajax slug] (render-page (render-page-content slug) ajax))
 
-  (GET "/shows/:slug" [slug] (render-show slug))
+  (GET "/shows/:slug" [ajax slug] (render-page (render-show slug) ajax))
 
   (GET "/sitemap.xml" [] "TODO: sitemap")
 
