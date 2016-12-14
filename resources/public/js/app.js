@@ -74,14 +74,17 @@ Nav.prototype.bind = function(node) {
 		// override relative link/click events to relative URLs
 		if (link.getAttribute('href')[0] === '/') {
 			link.addEventListener('click', function(e) {
-				e.preventDefault();
+				// Check for CMD key, for opening a new page instead of AJAX handler
+				if (!e.metaKey) {
+					e.preventDefault();
 
-				// get the actual link element
-				var target = e.target;
-				while (target.tagName.toLowerCase() !== 'a') {
-					target = target.parentElement;
+					// get the actual link element
+					var target = e.target;
+					while (target.tagName.toLowerCase() !== 'a') {
+						target = target.parentElement;
+					}
+					self.go(target.getAttribute('href'));
 				}
-				self.go(target.getAttribute('href'));
 			});
 		}
 	};
